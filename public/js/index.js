@@ -1,15 +1,43 @@
 const apiHandler = new MoviesApiHandler()
 
-loadMoviesFromAPI()
 
-function loadMoviesFromAPI() {
+
+
+document.querySelector('#search').oninput = e => {
+    // document.querySelector('#search-button').onclick = e => {
+
+    console.log("<======")
+    console.log("algaosda")
+    e.preventDefault()
+
+    const movieName = document.querySelector('#search').value
+    // movieName = movieName.value
+    console.log(movieName)
 
     apiHandler
-        .getAllMovies()
+        .getOneMovie(movieName)
         .then(response => {
-            // let movies = ''
-            response.data.forEach(elm => console.log(elm.title))
-            // document.querySelector('#moviesList').innerHTML = movies
+            console.log('===========z', response)
+            console.log(response.data.results[0].title)
+            console.log(response.data.results)
+            // fillMovieEditForm(response.data)
+            // document.querySelector('#search').reset()
+
+            // const secondParagraph = document.querySelectorAll('option')
+            // document.querySelector('section').removeChild(secondParagraph)
+
+
+
+            for (let i = 0; i < 1; i++) {
+                const create = document.createElement('option')
+                const text = document.createTextNode(response.data.results[i].title)
+                if (response.data.results.length === 5) {
+                    response.data.results.shift()
+                    console.log('help teo')
+                }
+                create.appendChild(text)
+                document.querySelector('select').appendChild(create)
+            }
         })
         .catch(err => console.log(err))
 }

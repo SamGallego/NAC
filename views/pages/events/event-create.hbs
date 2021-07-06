@@ -1,5 +1,6 @@
-<div id="map"></div>
 <script src="/js/map.js"></script>
+<div id="map"></div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{process.env.API_KEY}}&callback=initMap"></script>
 <div class="container">
@@ -14,12 +15,15 @@
             <hr>
 
 
-            {{!-- <div class="form-group">
+            <div class="form-group">
                 <form>
                     <input type="text" placeholder="Movie" id="search" class="search">
+                    <button type="submit" class="btn btn-dark btn-block btn-lg" id="search-button">Search</button>
                 </form>
-            </div> --}}
+            </div>
+            <select id="select_movie" class="select">
 
+            </select>
 
             <form action="/event/create" method="POST">
 
@@ -76,3 +80,5 @@
     </div>
 
 </div>
+<script src="/js/api-handler.js"></script>
+<script src="/js/index.js"></script>

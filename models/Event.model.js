@@ -3,6 +3,10 @@ const { Schema, model } = require("mongoose");
 const eventSchema = new Schema({
     name: String,
     capacity: Number,
+    movie: {
+        name: String,
+        id: Number
+    },
     date: {
         start: Date,
         end: Date
@@ -22,7 +26,7 @@ const eventSchema = new Schema({
     status: { type: String, enum: ['ACTIVE', 'INACTIVE'] }
 
 });
-//"2dsphere"
+
 eventSchema.index({ location: '2dsphere' })
 
 const Event = model("Event", eventSchema);
