@@ -1,0 +1,13 @@
+<div class="container">
+    <h1>Events</h1>
+    <hr>
+    {{#each events}}
+    <p>- {{name}} <a href="/event/list/{{id}}" class="btn btn-dark btn-sm">Go to the event!</a></p>
+    {{/each}}
+    <hr>
+    {{#if errorMessage}}
+    <div class="errorMessage">
+        {{errorMessage}}</div>
+    {{/if}}
+    <a href="/" class="btn btn-dark">Back</a>
+</div>
