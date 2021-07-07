@@ -8,7 +8,8 @@ router.get("/create", (req, res, next) => {
 });
 
 router.post('/create', checkLoggedUser, (req, res) => {
-    const { name, capacity, image, startDate, format, lat, lng, title, imageUrl } = req.body
+    const { name, capacity, image, startDate, format, lat, lng, title, description, imageUrl } = req.body
+
     const location = {
         type: 'Point',
         coordinates: [lat, lng],
@@ -16,12 +17,14 @@ router.post('/create', checkLoggedUser, (req, res) => {
         city: '',
         address: ''
     }
+
     const movie = {
         name: title,
         image: imageUrl
     }
+
     Event
-        .create({ name, capacity, image, startDate, format, location, movie, organizer: req.session.currentUser._id })
+        .create({ name, capacity, image, startDate, format, location, movie, description, organizer: req.session.currentUser._id })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
 })
@@ -39,7 +42,10 @@ router.post('/assignUser', checkLoggedUser, (req, res) => {
 router.get("/list", (req, res, next) => {
     Event
         .find()
-        .then(events => res.render('pages/events/event-list', { events, userInSession: req.session.currentUser }))
+        .then(events => {
+            console.log(events)
+            res.render('pages/events/event-list', { events, userInSession: req.session.currentUser })
+        })
         .catch(err => console.log(err))
 })
 router.get("/list/:_id", (req, res, next) => {

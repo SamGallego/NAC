@@ -22,12 +22,15 @@ document.querySelector('#search').oninput = e => {
                 create.appendChild(text)
                 document.querySelector('select').appendChild(create)
             }
+
             const select = document.querySelector('#select_movie')
             const inputTitle = document.getElementById('title')
             inputTitle.value = select.value
         })
+
         .catch(err => console.log(err))
 }
+
 document.querySelector('#select_movie').onclick = e => {
     const select = document.querySelector('#select_movie')
     const inputTitle = document.getElementById('title')

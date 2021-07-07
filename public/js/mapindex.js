@@ -18,7 +18,7 @@ function initMap() {
 
 
             const infowindow = new google.maps.InfoWindow({
-                content: `<a href="/event/${elm._id}">${elm.name}</a>`,
+                content: `<a href="/event/list/${elm._id}">${elm.name}</a>`,
             });
 
             marker.addListener("click", () => {
