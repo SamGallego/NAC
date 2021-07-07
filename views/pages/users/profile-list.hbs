@@ -1,8 +1,8 @@
 <div class="container">
-    <h1>Events</h1>
+    <h1>Profiles</h1>
     <hr>
-    {{#each events}}
-    <p>- {{name}} <a href="/event/list/{{id}}" class="btn btn-dark btn-sm">Details</a></p>
+    {{#each profile}}
+    <p>- {{name}} <a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a></p>
     {{/each}}
     <hr>
     {{#if errorMessage}}
