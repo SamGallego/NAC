@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const commentSchema = new Schema({
+const eventCommentSchema = new Schema({
     comment: [{
         user: { type: Schema.Types.ObjectId, ref: 'User' },
         event: { type: Schema.Types.ObjectId, ref: 'Event' },
@@ -11,5 +11,5 @@ const commentSchema = new Schema({
         timestamps: true
     }
 );
-const Comment = model("Comment", commentSchema);
-module.exports = Comment;
+const EventComment = model("EventComment", eventCommentSchema);
+module.exports = EventComment;
