@@ -1,13 +1,10 @@
 const apiHandler = new MoviesApiHandler()
 
-
-
 document.querySelector('#search').oninput = e => {
 
     e.preventDefault()
 
     const movieName = document.querySelector('#search').value
-    console.log(movieName)
 
     apiHandler
         .getOneMovie(movieName)
@@ -15,7 +12,6 @@ document.querySelector('#search').oninput = e => {
             //limpiar el select
             let options = document.querySelectorAll('option')
             options.forEach(opt => opt.parentNode.removeChild(opt))
-
             //recorrer movies
             for (let i = 0; i < 5; i++) {
                 //crear options y su text
@@ -48,26 +44,13 @@ document.querySelector('#search').oninput = e => {
 
 
 document.querySelector('#select_movie').onclick = e => {
-    /** rellene el form con el select.value */
-    // const genre = document.createTextNode(response.data.results[i].genre)
-    // console.log(response.data.results[i].title)
-
     const select = document.querySelector('#select_movie')
     const inputTitle = document.getElementById('title')
     inputTitle.value = select.value
 
     apiHandler.getOneMovie(inputTitle.value).then(response => {
-
         const selectPoster = response.data.results[0].poster_path
         const inputPoster = document.getElementById('imageUrl')
         inputPoster.value = selectPoster
-
-        console.log('final', response.data.results[0].poster_path)
-
-
-
-
-
     })
-
 }

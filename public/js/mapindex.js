@@ -1,0 +1,21 @@
+function initMap() {
+    let markers = []
+
+    const uluru = { lat: 28.093491, lng: -14.279944 }
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: uluru,
+    })
+
+    axios.get("/api/movie").then(res => {
+        res.data.forEach(elm => {
+
+            new google.maps.Marker({
+                position: { lat: elm.location.coordinates[0], lng: elm.location.coordinates[1] },
+                map: map,
+                title: 'uwu'
+            })
+        });
+    })
+}
