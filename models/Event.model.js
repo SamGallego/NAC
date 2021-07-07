@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-
 const eventSchema = new Schema({
     name: String,
     capacity: Number,
@@ -26,9 +25,6 @@ const eventSchema = new Schema({
     status: { type: String, enum: ['ACTIVE', 'INACTIVE'] }
 
 });
-
 eventSchema.index({ location: '2dsphere' })
-
 const Event = model("Event", eventSchema);
-
 module.exports = Event;

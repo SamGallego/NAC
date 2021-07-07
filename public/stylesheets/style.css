@@ -1,14 +1,10 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
- 
-}
-
+ }
 a {
   color: #00b7ff;
 }
-
 h1 {
-  
   margin: 20px;
 }
 p{
@@ -16,11 +12,21 @@ p{
 }
 #map {
   height: 600px;
-  /* The height is 400 pixels /
-  width: 100%;
-  / The width is the width of the web page */
 }
 button{
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.border{
+  border-style: dotted;
+}
+.form-control{
+  margin: 20px 0px;
+}
+.input-group{
+  margin: 0px 30px;
+}
+.borde{
+  border-style: solid;
+  border-width: medium;
 }

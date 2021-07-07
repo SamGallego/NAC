@@ -6,7 +6,10 @@ const commentSchema = new Schema({
         text: String,
         date: Date
     }],
-});
-
+},
+    {
+        timestamps: true
+    }
+);
 const Comment = model("Comment", commentSchema);
 module.exports = Comment;
