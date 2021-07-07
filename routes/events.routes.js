@@ -6,6 +6,7 @@ const { checkLoggedUser } = require('./../middleware')
 router.get("/create", (req, res, next) => {
     res.render("pages/events/event-create", { userInSession: req.session.currentUser });
 });
+
 router.post('/create', checkLoggedUser, (req, res) => {
     const { name, capacity, image, startDate, format, lat, lng, title, imageUrl } = req.body
     const location = {
@@ -20,10 +21,20 @@ router.post('/create', checkLoggedUser, (req, res) => {
         image: imageUrl
     }
     Event
-        .create({ name, capacity, image, startDate, format, location, movie })
+        .create({ name, capacity, image, startDate, format, location, movie, organizer: req.session.currentUser._id })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
 })
+
+router.post('/assignUser', checkLoggedUser, (req, res) => {
+
+    Event
+        .findByIdAndUpdate("id", {}, { new: true })
+        .then((updated) => res.json(updated))
+        .catch(err => console.log(err))
+})
+
+
 // List
 router.get("/list", (req, res, next) => {
     Event
