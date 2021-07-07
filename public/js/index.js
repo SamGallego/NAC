@@ -2,7 +2,6 @@ const apiHandler = new MoviesApiHandler()
 document.querySelector('#search').oninput = e => {
     e.preventDefault()
     const movieName = document.querySelector('#search').value
-    console.log(movieName)
     apiHandler
         .getOneMovie(movieName)
         .then(response => {
@@ -38,6 +37,5 @@ document.querySelector('#select_movie').onclick = e => {
         const selectPoster = response.data.results[0].poster_path
         const inputPoster = document.getElementById('imageUrl')
         inputPoster.value = selectPoster
-        console.log('final', response.data.results[0].poster_path)
     })
 }

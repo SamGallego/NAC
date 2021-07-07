@@ -49,13 +49,6 @@ function initMap() {
 
     map.addListener("click", (event) => {
         addMarker(event.latLng);
-        console.log('aaaaaaaaaaaaa', event.latLng.lat());
-        console.log('aaaaaaaaaaaaa', event.latLng.lng());
-        console.log(`lat: ${event.latLng.lat()} lng: ${event.latLng.lng()} `)
-
-        // document.getElementById('lat') //obj, ref al DOM
-        // document.getElementById('lat').value = "" //no hace ref
-
         const inputLat = document.getElementById('lat')
         inputLat.value = event.latLng.lat()
 

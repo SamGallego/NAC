@@ -3,7 +3,6 @@ const User = require('./../models/User.model')
 /* GET home page */
 router.get("/profile", (req, res, next) => {
     const user_id = req.session.currentUser._id
-    console.log('aaaaaaaaaaaaaaaaaaaaaa', req.session.currentUser._id)
     User
         .findById(user_id)
         .then(user => {
