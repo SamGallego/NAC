@@ -29,10 +29,10 @@ router.post('/create', checkLoggedUser, (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/assignUser', checkLoggedUser, (req, res) => {
-
+router.post('/assignUser/:event_id', checkLoggedUser, (req, res) => {
+    const user = req.body.user_id
     Event
-        .findByIdAndUpdate("id", {}, { new: true })
+        .findByIdAndUpdate(req.params.event_id, { $push: { users: user } }, { new: true })
         .then((updated) => res.json(updated))
         .catch(err => console.log(err))
 })
@@ -53,8 +53,9 @@ router.get("/list/:_id", (req, res, next) => {
     Event
         .findById(event_id)
         .then(event => {
-            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser })
+            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) })
         })
         .catch(err => console.log(err))
 })
+
 module.exports = router;
