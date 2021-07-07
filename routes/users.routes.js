@@ -22,4 +22,14 @@ router.get("/user-list", checkLoggedUser, (req, res, next) => {
         .catch(err => console.log(err))
 })
 
+router.get("/profile/:_id", checkLoggedUser, (req, res, next) => {
+    const user_id = req.params
+    User
+        .findById(user_id)
+        .then(user => {
+            res.render('pages/users/profile', { user })
+        })
+        .catch(err => console.log(err))
+})
+
 module.exports = router;
