@@ -1,9 +1,26 @@
 <div class="container">
     <h1>{{user.name}}</h1>
     <hr>
-    <p>{{user.image}}</p>
+    <p src='{{user.image}}'></p>
     <p>{{user.description}}</p>
     <p>{{user.rate}}</p>
     <hr>
-    <section>{{comment.comment}}</section>
+    <h2>Chat</h2>
+    <div class="borde">
+        <div id="chat-container">
+            <div class="row">
+                <ul id="messages"></ul>
+            </div>
+            <div class="row col-xs-12">
+                <form id="message form" action="">
+                    <div class="input-group">
+                        <input id="m" autocomplete="off" type="text" class="form-control" placeholder="Message">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Send</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
