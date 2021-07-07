@@ -5,6 +5,7 @@ const eventSchema = new Schema({
     capacity: Number,
     movie: {
         name: String,
+        image: String,
         id: Number
     },
     date: {
@@ -21,7 +22,6 @@ const eventSchema = new Schema({
         city: String,
         address: String
     },
-    image: String,
     description: String,
     status: { type: String, enum: ['ACTIVE', 'INACTIVE'] }
 

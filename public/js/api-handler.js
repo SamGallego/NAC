@@ -8,7 +8,6 @@ class MoviesApiHandler {
         })
     }
     getFullList = () => this.axiosApp.get('/movies')
-    // getOneMovie = name => this.axiosApp.get(`/search${name}`)
     getOneMovie = name => this.axiosApp.get(`${name}`)
 
 }

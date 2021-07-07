@@ -13,7 +13,7 @@ router.get("/create", (req, res, next) => {
 
 router.post('/create', checkLoggedUser, (req, res) => {
 
-    const { name, capacity, image, startDate, format, lat, lng } = req.body
+    const { name, capacity, image, startDate, format, lat, lng, title, imageUrl } = req.body
 
     const location = {
         type: 'Point',
@@ -22,11 +22,16 @@ router.post('/create', checkLoggedUser, (req, res) => {
         city: '',
         address: ''
     }
+    const movie = {
+        name: title,
+        image: imageUrl
+
+    }
 
 
 
     Event
-        .create({ name, capacity, image, startDate, format, location })
+        .create({ name, capacity, image, startDate, format, location, movie })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
 
