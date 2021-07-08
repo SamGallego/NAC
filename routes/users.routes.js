@@ -27,7 +27,7 @@ router.get("/profile/:_id", checkLoggedUser, (req, res, next) => {
     User
         .findById(user_id)
         .then(user => {
-            res.render('pages/users/profile', { user })
+            res.render('pages/users/profile', { user, userInSession: req.session.currentUser })
         })
         .catch(err => console.log(err))
 })

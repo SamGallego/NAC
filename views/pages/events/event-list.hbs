@@ -2,7 +2,10 @@
     <h1>Events</h1>
     <hr>
     {{#each events}}
-    <p>- {{name}} <a href="/event/list/{{id}}" class="btn btn-dark btn-sm">Details</a></p>
+    <p>- {{name}}
+        <a href="/event/list/{{id}}" class="btn btn-dark btn-sm">Details</a>
+        <a href="/event/edit/{{id}}" class="btn btn-dark btn-sm">Edit</a>
+    </p>
     {{/each}}
     <hr>
     {{#if errorMessage}}

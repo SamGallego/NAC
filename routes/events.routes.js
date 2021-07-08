@@ -28,15 +28,17 @@ router.post('/create', checkLoggedUser, (req, res) => {
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
 })
-//Añadir lista de usuarios
+
 router.post('/assignUser/:event_id/:user_id', checkLoggedUser, (req, res) => {
-    // Como poner al usuario dentro del evento
 
     Event
         .findByIdAndUpdate(req.params.event_id, { $push: { users: req.params.user_id } }, { new: true })
-        .then((updated) => {
+        .populate("users")
+        .then((event) => {
+            const isEventFull = event.users.length >= event.capacity
+
             res.render('pages/events/event-details', {
-                event: updated, userInSession: req.session.currentUser, canJoin: !updated.users.some(user => user == req.session.currentUser._id)
+                event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser._id && !isEventFull)
             })
         })
         .catch(err => console.log(err))
@@ -51,15 +53,24 @@ router.get("/list", (req, res, next) => {
         })
         .catch(err => console.log(err))
 })
-router.get("/list/:_id", (req, res, next) => {
+
+
+router.get("/list/:_id", checkLoggedUser, (req, res, next) => {
     const event_id = req.params
 
     Event
         .findById(event_id)
+        .populate("users")
         .then(event => {
-            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) })
+
+            const alreadyJoined = event.users.some(user => user._id.equals(req.session.currentUser._id))
+
+            const isEventFull = event.users.length >= event.capacity
+            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) && !isEventFull && !alreadyJoined })
         })
         .catch(err => console.log(err))
 })
+
+
 
 module.exports = router;
