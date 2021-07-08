@@ -16,7 +16,6 @@ function initMap() {
                 title: 'uwu'
             })
 
-
             const infowindow = new google.maps.InfoWindow({
                 content: `<a href="/event/list/${elm._id}">${elm.name}</a>`,
             });
@@ -28,11 +27,6 @@ function initMap() {
                     shouldFocus: false,
                 });
             });
-
-
         });
-
-
     })
-
 }

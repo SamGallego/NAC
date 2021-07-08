@@ -1,7 +1,9 @@
 const apiHandler = new MoviesApiHandler()
+
 document.querySelector('#search').oninput = e => {
     e.preventDefault()
     const movieName = document.querySelector('#search').value
+
     apiHandler
         .getOneMovie(movieName)
         .then(response => {
@@ -9,6 +11,7 @@ document.querySelector('#search').oninput = e => {
             let options = document.querySelectorAll('#select_movie option')
             options.forEach(opt => opt.parentNode.removeChild(opt))
             //recorrer movies
+
             for (let i = 0; i < 5; i++) {
                 //crear options y su text
                 const create = document.createElement('option')
@@ -41,4 +44,8 @@ document.querySelector('#select_movie').onclick = e => {
         const inputPoster = document.getElementById('imageUrl')
         inputPoster.value = selectPoster
     })
+}
+
+document.querySelector('#join').onclick = join => {
+
 }
