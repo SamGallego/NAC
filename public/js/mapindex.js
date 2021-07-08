@@ -8,6 +8,7 @@ function initMap() {
     })
 
     axios.get("/api/movie").then(res => {
+        console.log(res)
         res.data.forEach(elm => {
 
             const marker = new google.maps.Marker({
