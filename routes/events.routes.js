@@ -54,10 +54,16 @@ router.get("/list", (req, res, next) => {
 router.get("/list/:_id", (req, res, next) => {
     const event_id = req.params
 
+
     Event
         .findById(event_id)
+        .populate("users")
         .then(event => {
-            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) })
+            const isEventFull = event.users.length === event.capacity
+            console.log(isEventFull)
+
+            console.log(event)
+            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) || !isEventFull })
         })
         .catch(err => console.log(err))
 })

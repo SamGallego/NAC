@@ -33,3 +33,9 @@ button{
 #mymap {
   height: 600px;
 }
+
+#markerWindows {
+ text-decoration: none;
+ font;: 10 px;
+
+}
