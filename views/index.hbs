@@ -2,4 +2,27 @@
 <div id="map"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key={{process.env.API_KEY}}&callback=initMap"></script>
 
-<h1>Hola Paula & Teo 🚀</h1>
+
+<div id="eventsSection">
+    <h1>Upcoming Events</h1>
+
+    {{#each events}}
+    <div id="showEvents">
+        <h3> <a href="event/list/{{id}}">{{name}}</a> </h3>
+        <div id="showEvents2" class="flex-container">
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.image}}" alt="{{movie.name}}" width=" 200">
+
+
+
+            <p>
+                Description:
+                <hr> {{description}}
+            </p>
+
+
+        </div>
+    </div>
+    {{/each}}
+
+
+</div>

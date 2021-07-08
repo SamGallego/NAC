@@ -34,8 +34,66 @@ button{
   height: 600px;
 }
 
-#markerWindows {
+#markerWindows a {
  text-decoration: none;
- font;: 10 px;
+color: black;
+font-weight: bold;
 
+}
+
+#showEvents{
+
+  border-style: solid;
+  margin: 10px;
+  border-radius: 15px;
+  background-color:white;
+}
+#showEvents2{
+
+
+  margin: 10px;
+
+  background-color:white;
+}
+#showEvents h3{
+  margin: 20px;
+
+}
+
+#showEvents a{
+color: black;
+
+}
+
+
+
+#eventsSection {
+background-color:#c0d6df;
+
+}
+
+
+#eventsSection img{
+padding: 20px;
+
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+.flex-container p {
+margin-right: 700px;
 }

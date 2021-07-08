@@ -19,7 +19,14 @@ function initMap() {
 
             const infowindow = new google.maps.InfoWindow({
 
-                content: `<div id="markerWindows"> <strong><a href="/event/list/${elm._id}">${elm.name}</a><strong></div>`,
+                content: `<div id="markerWindows"> <strong><a href="/event/list/${elm._id}">${elm.name}</a><strong> <hr>
+                
+                <img src="https://image.tmdb.org/t/p/w500/${elm.movie.image}" alt="${elm.movie.name}"  width="150">  
+                
+                <p>${elm.description} </p></div>`
+
+                ,
+
             });
 
             marker.addListener("click", () => {
