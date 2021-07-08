@@ -3,5 +3,5 @@ module.exports = app => {
   app.use('/', require('./auth.routes'))
   app.use('/user', require('./users.routes'))
   app.use('/event', require('./events.routes.js'))
-  app.use('/chat', require('./chats.routes.js'))
+  app.use('/comment', require('./comments.routes.js'))
 }

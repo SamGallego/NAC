@@ -2,21 +2,21 @@
     <h1>{{event.name}}</h1>
     <section>{{event.movie.name}}</section>
     <p>{{event.startDate}}</p>
-    {{#if canJoin}}
-    <button>I am the REAL Join :D</button>
-    {{/if}}
     <hr>
     <section>
-
 
         <img src="https://image.tmdb.org/t/p/w500/{{event.movie.image}}" alt="movie cover" width="150">
         <p> {{event.description}}</p>
 
-
-        <form action="">
-
+        {{#if canJoin}}
+        <form action="/event/assignUser/{{event._id}}/{{userInSession._id}}" method="POST">
             <button type="submit" class="btn btn-dark  btn-lg">Assist</button>
         </form>
+        {{/if}}
+
+        {{#each event.users}}
+        <p>{{}}</p>
+        {{/each}}
 
     </section>
 </div>

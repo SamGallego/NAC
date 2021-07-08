@@ -28,28 +28,32 @@ router.post('/create', checkLoggedUser, (req, res) => {
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
 })
+//Añadir lista de usuarios
+router.post('/assignUser/:event_id/:user_id', checkLoggedUser, (req, res) => {
+    // Como poner al usuario dentro del evento
 
-router.post('/assignUser/:event_id', checkLoggedUser, (req, res) => {
-    const user = req.body.user_id
     Event
-        .findByIdAndUpdate(req.params.event_id, { $push: { users: user } }, { new: true })
-        .then((updated) => res.json(updated))
+        .findByIdAndUpdate(req.params.event_id, { $push: { users: req.params.user_id } }, { new: true })
+        .then((updated) => {
+            res.render('pages/events/event-details', {
+                event: updated, userInSession: req.session.currentUser, canJoin: !updated.users.some(user => user == req.session.currentUser._id)
+            })
+        })
         .catch(err => console.log(err))
 })
-
 
 // List
 router.get("/list", (req, res, next) => {
     Event
         .find()
         .then(events => {
-            console.log(events)
             res.render('pages/events/event-list', { events, userInSession: req.session.currentUser })
         })
         .catch(err => console.log(err))
 })
 router.get("/list/:_id", (req, res, next) => {
     const event_id = req.params
+
     Event
         .findById(event_id)
         .then(event => {
