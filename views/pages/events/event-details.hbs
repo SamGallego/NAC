@@ -1,11 +1,12 @@
 <div class="container">
     <h1>{{event.name}}</h1>
-    <section>{{event.movie.name}}</section>
     <p>{{event.startDate}}</p>
     <hr>
     <section>
 
         <img src="https://image.tmdb.org/t/p/w500/{{event.movie.image}}" alt="movie cover" width="150">
+        <p>{{event.movie.name}}</p>
+        <hr>
         <p> {{event.description}}</p>
 
         {{#if canJoin}}
@@ -13,9 +14,9 @@
             <button type="submit" class="btn btn-dark  btn-lg">Assist</button>
         </form>
         {{/if}}
-
+        <h2>List users</h2>
         {{#each event.users}}
-        <p>{{user.name}}</p>
+        <p>-{{name}} <a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a> </p>
         {{/each}}
 
     </section>
