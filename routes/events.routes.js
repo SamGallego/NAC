@@ -43,6 +43,21 @@ router.post('/assignUser/:event_id/:user_id', checkLoggedUser, (req, res) => {
         })
         .catch(err => console.log(err))
 })
+// Delete
+router.post('/deleteUser/:event_id/:user_id', checkLoggedUser, (req, res) => {
+
+    Event
+        .findByIdAndUpdate(req.params.event_id, { $pop: { users: req.params.user_id } }, { new: true })
+        .populate("users")
+        .then((event) => {
+            const isEventFull = event.users.length >= event.capacity
+
+            res.render('pages/events/event-details', {
+                event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser._id && !isEventFull)
+            })
+        })
+        .catch(err => console.log(err))
+})
 
 // List
 router.get("/list", (req, res, next) => {
