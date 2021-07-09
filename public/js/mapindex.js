@@ -12,10 +12,6 @@ function initMap() {
     })
 
     axios.get("/api/movie").then(res => {
-<<<<<<< HEAD
-=======
-        // console.log(res)
->>>>>>> 1ad76ed (ultimo commit)
         res.data.forEach(elm => {
 
             const marker = new google.maps.Marker({
