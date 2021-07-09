@@ -1,6 +1,11 @@
 <div class="container">
     <h1>{{event.name}}</h1>
-    <p>{{event.startDate}}</p>
+    <p>{{event.date.start}}</p>
+    {{#if canDelete}}
+    <form action="/event/delete/{{event._id}}" method="POST">
+        <button type="submit" class="btn btn-danger  btn-lg">Delete Event</button>
+    </form>
+    {{/if}}
     <hr>
     <section>
 
@@ -14,10 +19,18 @@
             <button type="submit" class="btn btn-dark  btn-lg">Assist</button>
         </form>
         {{/if}}
+        <h2>Organizer</h2>
+        <p>{{event.organizer.name}}</p>
         <h2>List users</h2>
         {{#each event.users}}
-        <p>-{{name}} <a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a> </p>
-        {{/each}}
+        <p>-{{name}}<a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a>
 
+            {{#if ../canDelete}}
+        <form action="/event/deleteUser/{{../event._id}}/{{_id}}" method="POST">
+            <button type="submit" class="btn btn-danger  btn-lg">Delete User</button>
+        </form>
+        {{/if}}
+        </p>
+        {{/each}}
     </section>
 </div>

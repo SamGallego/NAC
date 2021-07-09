@@ -4,9 +4,6 @@ body {
 a {
   color: #00b7ff;
 }
-h1 {
-  margin: 20px;
-}
 p{
   margin: 20px;
 }
@@ -38,21 +35,18 @@ button{
  text-decoration: none;
 color: black;
 font-weight: bold;
+width: 100px;
 
 }
 
 #showEvents{
-
   border-style: solid;
   margin: 10px;
   border-radius: 15px;
   background-color:white;
 }
 #showEvents2{
-
-
   margin: 10px;
-
   background-color:white;
 }
 #showEvents h3{
@@ -64,23 +58,23 @@ font-weight: bold;
 color: black;
 
 }
-
-
+section{
+  display: block;
+  margin: auto;
+  width: 60%;
+}
 
 #eventsSection {
 background-color:#c0d6df;
-
 }
 
 
 #eventsSection img{
 padding: 20px;
-
 }
 
 .flex-container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: nowrap;
   background-color: DodgerBlue;
 }
@@ -94,6 +88,11 @@ padding: 20px;
   font-size: 30px;
 }
 
-.flex-container p {
-margin-right: 700px;
+.img-profile {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    width: 40%;
+    height: auto;
 }
