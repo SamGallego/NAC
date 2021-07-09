@@ -22,7 +22,8 @@ const eventSchema = new Schema({
         address: String
     },
     description: String,
-    status: { type: String, enum: ['ACTIVE', 'INACTIVE'] }
+    status: { type: String, enum: ['ACTIVE', 'INACTIVE'] },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'EventComment' }],
 
 });
 eventSchema.index({ location: '2dsphere' })

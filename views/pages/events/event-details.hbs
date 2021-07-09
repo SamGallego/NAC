@@ -23,14 +23,54 @@
         <p>{{event.organizer.name}}</p>
         <h2>List users</h2>
         {{#each event.users}}
-        <p>-{{name}}<a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a>
+        <p>-{{name}}<a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a></p>
 
-            {{#if ../canDelete}}
+        {{#if ../canDelete}}
         <form action="/event/deleteUser/{{../event._id}}/{{_id}}" method="POST">
             <button type="submit" class="btn btn-danger  btn-lg">Delete User</button>
         </form>
         {{/if}}
-        </p>
+
         {{/each}}
+        {{!-- <h2>List users</h2>
+        {{#each event.users}}
+        <p>-{{name}} <a href="/user/profile/{{id}}" class="btn btn-dark btn-sm">Details</a> </p>
+        {{/each}} --}}
+
+        <hr>
+        <h1>Comments</h1>
+        {{#each event.comments}}
+        <p id="commenterName"> {{user.name}}</p>
+
+        <p> {{text}}</p>
+        {{/each}}
+
+        <hr>
+        <div class="container">
+
+            <h2>Latest Posts</h2>
+            <div class="borde">
+                <div id="chat-container">
+                    <div class="row">
+                        <ul id="messages"></ul>
+                    </div>
+                    <div class="row col-xs-12">
+
+                    </div>
+                    <div class="form-group">
+                        <form id="message form" action="/event/comment" method="POST">
+                            {{!-- <label for="name">Description</label> --}}
+                            <textarea name="text" class="form-control" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
+                            {{!-- hidden input con el id del evento --}}
+                            <div class="form-group">
+                                <input type="hidden" class="form-control pos" name="id" id="title" value="{{event.id}}">
+                            </div>
+                            <button class="btn btn-success" type="submit">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </div>

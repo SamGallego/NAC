@@ -1,13 +1,21 @@
 function initMap() {
     let markers = []
-    const uluru = { lat: 28.093491, lng: -14.279944 }
+    const uluru = { lat: 40.289141, lng: -1.895059 }
+
+
+
+
 
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
+        zoom: 7,
         center: uluru,
     })
 
     axios.get("/api/movie").then(res => {
+<<<<<<< HEAD
+=======
+        // console.log(res)
+>>>>>>> 1ad76ed (ultimo commit)
         res.data.forEach(elm => {
 
             const marker = new google.maps.Marker({

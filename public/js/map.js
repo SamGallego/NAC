@@ -1,9 +1,10 @@
 let map, marker
 function initMap() {
-    const uluru = { lat: 28.093491, lng: -14.279944 }
+    const uluru = { lat: 40.289141, lng: -1.895059 }
+
 
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
+        zoom: 7,
         center: uluru,
     })
 

@@ -26,6 +26,8 @@ button{
 .borde{
   border-style: solid;
   border-width: medium;
+  border-radius: 15px;
+  padding: 20px;
 }
 #mymap {
   height: 600px;
@@ -95,4 +97,9 @@ padding: 20px;
     border-radius: .25rem;
     width: 40%;
     height: auto;
+}
+
+#commenterName {
+
+  font-weight: bold;
 }

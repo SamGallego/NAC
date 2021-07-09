@@ -1,7 +1,10 @@
 const router = require("express").Router();
 const Event = require('./../models/Event.model')
 const User = require('./../models/User.model')
-const { checkLoggedUser } = require('./../middleware')
+const { checkLoggedUser } = require('./../middleware');
+const { text } = require("express");
+const EventComment = require("../models/EventComment.model");
+const { findByIdAndUpdate } = require("./../models/Event.model");
 /* GET home page */
 router.get("/create", (req, res, next) => {
     res.render("pages/events/event-create", { userInSession: req.session.currentUser });
@@ -84,15 +87,42 @@ router.get("/list/:_id", checkLoggedUser, (req, res, next) => {
     Event
         .findById(event_id)
         .populate("users organizer")
+        //deep populate
+        .populate({
+            path: "comments",
+            populate: {
+                path: "user"
+            }
+        })
         .then(event => {
 
             const alreadyJoined = event.users.some(user => user._id.equals(req.session.currentUser._id))
             const isEventFull = event.users.length >= event.capacity
+<<<<<<< HEAD
 
             res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) && !isEventFull && !alreadyJoined, canDelete: event.organizer._id == req.session.currentUser._id })
+=======
+            console.log("comments?", event)
+            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) && !isEventFull && !alreadyJoined })
+>>>>>>> 1ad76ed (ultimo commit)
         })
         .catch(err => console.log(err))
 })
+
+////////mensaje POst en el evento
+router.post('/comment', checkLoggedUser, (req, res) => {
+    //quieres el id del USER LOGUEADO
+
+    const comment = { text: req.body.text, user: req.session.currentUser._id, event: req.body.id }
+
+    EventComment
+        .create(comment)
+        .then(newComment => Event.findByIdAndUpdate(comment.event, { $push: { comments: newComment._id } }))
+        .then(event => res.redirect("/"))
+        .catch(err => console.log(err))
+})
+
+
 
 
 module.exports = router;

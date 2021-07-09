@@ -7,7 +7,7 @@ router.get("/", (req, res, next) => {
     .find()
     .then(events => {
       res.render("index", { userInSession: req.session.currentUser, events });
-      console.log(events)
+
     }
     )
     .catch(err => console.log(err))
