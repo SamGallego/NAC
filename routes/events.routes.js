@@ -98,13 +98,8 @@ router.get("/list/:_id", checkLoggedUser, (req, res, next) => {
 
             const alreadyJoined = event.users.some(user => user._id.equals(req.session.currentUser._id))
             const isEventFull = event.users.length >= event.capacity
-<<<<<<< HEAD
 
             res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) && !isEventFull && !alreadyJoined, canDelete: event.organizer._id == req.session.currentUser._id })
-=======
-            console.log("comments?", event)
-            res.render('pages/events/event-details', { event, userInSession: req.session.currentUser, canJoin: !event.users.some(user => user == req.session.currentUser) && !isEventFull && !alreadyJoined })
->>>>>>> 1ad76ed (ultimo commit)
         })
         .catch(err => console.log(err))
 })
